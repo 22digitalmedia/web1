@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Thumb Gardening Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: #aed581;
+        }
+        
+        main {
+            flex: 1;
+            margin-bottom: 40px;
+        }
+        
+        /* Home Page Styles */
+        .hero {
+            height: 80vh;
+            background-image: url('https://images.unsplash.com/photo-1566753323558-f4e0952af115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #2e7d32;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #1b5e20;
+        }
+        
+        .services {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #2e7d32;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+        
+        .cta {
+            padding: 80px 0;
+            background-image: url('https://images.unsplash.com/photo-1589923188900-85dae523342b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            margin-bottom: 30px;
+        }
+        
+        /* About Page Styles */
+        .page-header {
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .about-header {
+            background-image: url('https://images.unsplash.com/photo-1557429287-b2e26467fc2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+        
+        .terms-header {
+            background-image: url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+        
+        .privacy-header {
+            background-image: url('https://images.unsplash.com/photo-1594492215832-8aa37e93e2ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+        
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .page-header h1 {
+            font-size: 48px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        
+        .values-section {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .value-icon {
+            font-size: 50px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+        
+        .team-section {
+            padding: 80px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-card {
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .team-img {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        /* Terms and Privacy Page Styles */
+        .terms-section, .privacy-section {
+            padding: 80px 0;
+        }
+        
+        .terms-content, .privacy-content {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+        }
+        
+        .terms-content h2, .privacy-content h2 {
+            color: #2e7d32;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .terms-content h2:first-child, .privacy-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .terms-content p, .privacy-content p, 
+        .terms-content ul, .privacy-content ul {
+            margin-bottom: 15px;
+        }
+        
+        .terms-content ul, .privacy-content ul {
+            margin-left: 20px;
+        }
+        
+        .terms-content ul li, .privacy-content ul li {
+            margin-bottom: 10px;
+        }
+        
+        .privacy-content h3 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            padding: 50px 0 20px;
+            width: 100%;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #aed581;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Page Display Control */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero h1, .page-header h1 {
+                font-size: 36px;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .terms-content, .privacy-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Green Thumb Gardening</div>
+                <ul>
+                    <li><a onclick="showPage('home')" id="home-link" class="active">Home</a></li>
+                    <li><a onclick="showPage('about')" id="about-link">About Us</a></li>
+                    <li><a onclick="showPage('terms')" id="terms-link">Terms of Service</a></li>
+                    <li><a onclick="showPage('privacy')" id="privacy-link">Privacy Policy</a></li>
+                    <li><a onclick="showPage('home'); scrollToContact()">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="hero-content container">
+                    <h1>Transform Your Outdoor Space</h1>
+                    <p>Professional gardening services tailored to your needs. We create beautiful, sustainable landscapes that enhance the beauty of your property.</p>
+                    <a onclick="scrollToContact()" class="btn">Get a Free Quote</a>
+                </div>
+            </section>
+            
+            <section class="services container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Lawn Maintenance</h3>
+                            <p>Regular mowing, edging, fertilization, and weed control to keep your lawn healthy and beautiful all year round.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1603869311144-c272dae8cb16?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Garden Design</h3>
+                            <p>Custom garden design and installation services, including plant selection, hardscaping, and landscape lighting.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <div class="service-content">
+                            <h3>Tree & Shrub Care</h3>
+                            <p>Pruning, trimming, disease treatment, and seasonal care for all your trees and shrubs to ensure their health and longevity.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="testimonials">
+                <div class="container">
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <p>"Green Thumb Gardening transformed our backyard into a beautiful oasis. Their attention to detail and knowledge of plants is impressive!"</p>
+                            <div class="client-info">
+                                <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                                <h4>Sarah Johnson</h4>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"We've been using their lawn maintenance service for two years now, and our yard has never looked better. Highly recommended!"</p>
+                            <div class="client-info">
+                                <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                                <h4>Michael Davis</h4>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"Professional, punctual, and passionate about what they do. Green Thumb has exceeded our expectations in every way."</p>
+                            <div class="client-info">
+                                <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                                <h4>Jennifer Wilson</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cta">
+                <div class="cta-content">
+                    <h2>Ready to Transform Your Garden?</h2>
+                    <p>Contact us today for a free consultation and quote. Let us help you create the outdoor space of your dreams.</p>
+                    <a onclick="scrollToContact()" class="btn">Get Started</a>
+                </div>
+            </section>
+        </div>
+        
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page">
+            <section class="page-header about-header">
+                <h1>About Us</h1>
+            </section>
+            
+            <section class="about-section container">
+                <div class="about-grid">
+                    <div>
+                        <h2 class="section-title">Our Story</h2>
+                        <p>Green Thumb Gardening was founded in 2010 by landscape architect Michael Green with a simple mission: to create beautiful, sustainable outdoor spaces that bring joy to our clients and harmony to the environment.</p>
+                        <p>What started as a small operation with just two employees has grown into a full-service gardening company with a team of dedicated professionals serving the greater Portland area. Despite our growth, we remain committed to our core values of quality, sustainability, and exceptional customer service.</p>
+                        <p>Over the years, we've had the privilege of transforming hundreds of outdoor spaces, from small residential gardens to large commercial landscapes. Each project is approached with the same level of care, creativity, and attention to detail.</p>
+                        <p>We take pride in our work and are passionate about creating outdoor environments that not only look beautiful but also contribute positively to the ecosystem and provide functional spaces for our clients to enjoy.</p>
+                    </div>
+                    <div class="about-img"></div>
+                </div>
+            </section>
+            
+            <section class="values-section">
+                <div class="container">
+                    <h2 class="section-title">Our Core Values</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">♻️</div>
+                            <h3>Sustainability</h3>
+                            <p>We are committed to environmentally responsible practices, including water conservation, native plant selection, and organic pest management, to create landscapes that are beautiful and eco-friendly.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🌱</div>
+                            <h3>Quality</h3>
+                            <p>We never compromise on quality. From plant selection to installation techniques, we ensure that every aspect of our work meets the highest standards of excellence.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">👨‍👩‍👧‍👦</div>
+                            <h3>Customer Satisfaction</h3>
+                            <p>Our clients' happiness is our top priority. We listen carefully to your needs and preferences, communicate clearly throughout the process, and work diligently to exceed your expectations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="team-section container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <h3>Michael Green</h3>
+                        <p>Founder & Lead Landscape Architect</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <h3>Emily Chen</h3>
+                        <p>Garden Designer</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <h3>David Rodriguez</h3>
+                        <p>Operations Manager</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                        <h3>Sarah Johnson</h3>
+                        <p>Plant Specialist</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- TERMS PAGE -->
+        <div id="terms" class="page">
+            <section class="page-header terms-header">
+                <h1>Terms of Service</h1>
+            </section>
+            
+            <section class="terms-section container">
+                <div class="terms-content">
+                    <h2>1. Agreement to Terms</h2>
+                    <p>By accessing and using the services provided by Green Thumb Gardening, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                    
+                    <h2>2. Description of Services</h2>
+                    <p>Green Thumb Gardening provides professional landscaping and gardening services for residential and commercial properties. Our services include, but are not limited to, lawn maintenance, garden design, tree and shrub care, irrigation system installation and maintenance, and seasonal clean-up.</p>
+                    
+                    <h2>3. Scheduling and Appointments</h2>
+                    <p>All services are provided by appointment only. We require at least 48 hours' notice for rescheduling or cancellation. Failure to provide adequate notice may result in a cancellation fee of 25% of the scheduled service cost.</p>
+                    
+                    <h2>4. Payment Terms</h2>
+                    <p>Payment is due upon completion of service unless alternative arrangements have been made in advance. For ongoing maintenance services, monthly billing options are available. We accept cash, check, and all major credit cards.</p>
+                    <p>For projects exceeding $1,000, a 50% deposit is required before work begins, with the remaining balance due upon completion.</p>
+                    
+                    <h2>5. Estimates and Pricing</h2>
+                    <p>All estimates provided are valid for 30 days and are based on our assessment at the time of the estimate. Additional work discovered during the project may require revised pricing. We will always consult with you before proceeding with any additional work not included in the original estimate.</p>
+                    
+                    <h2>6. Service Guarantee</h2>
+                    <p>We stand behind the quality of our work. If you are not satisfied with our services, please notify us within 7 days, and we will make reasonable efforts to address your concerns at no additional cost.</p>
+                    <p>For plant material, we provide a 30-day guarantee on all plants installed by our team, provided proper care instructions have been followed.</p>
+                    
+                    <h2>7. Property Access and Responsibilities</h2>
+                    <p>You are responsible for providing reasonable access to your property for our team to perform the agreed-upon services. This includes:</p>
+                    <ul>
+                        <li>Ensuring gates are unlocked or access codes are provided</li>
+                        <li>Containing pets during service visits</li>
+                        <li>Clearly marking any underground utilities, sprinkler systems, or other features that may be damaged during normal service operations</li>
+                    </ul>
+                    
+                    <h2>8. Weather Conditions</h2>
+                    <p>Our services are weather-dependent. We reserve the right to reschedule appointments due to inclement weather conditions that may compromise the safety of our team or the quality of our work.</p>
+                    
+                    <h2>9. Liability and Insurance</h2>
+                    <p>Green Thumb Gardening maintains comprehensive liability insurance. However, we are not responsible for damage to underground installations (utilities, irrigation components, etc.) that were not properly marked or disclosed prior to service.</p>
+                    
+                    <h2>10. Service Termination</h2>
+                    <p>For ongoing maintenance services, either party may terminate the service agreement with 30 days' written notice. Any prepaid services will be refunded on a prorated basis.</p>
+                    
+                    <h2>11. Use of Images</h2>
+                    <p>We reserve the right to photograph our work for promotional and portfolio purposes. Client information will remain confidential unless explicit permission is granted for testimonials or case studies.</p>
+                    
+                    <h2>12. Amendments to Terms</h2>
+                    <p>We reserve the right to modify these terms at any time. Any changes will be effective immediately upon posting the updated terms on our website. Continued use of our services after such modifications constitutes your acceptance of the revised terms.</p>
+                    
+                    <h2>13. Governing Law</h2>
+                    <p>These terms shall be governed by and construed in accordance with the laws of the State of Oregon, without regard to its conflict of law provisions.</p>
+                    
+                    <h2>14. Contact Information</h2>
+                    <p>If you have any questions about these Terms of Service, please contact us:</p>
+                    <p>Green Thumb Gardening<br>
+                    1842 Maple Avenue<br>
+                    Portland, OR 97205<br>
+                    Phone: (503) 555-7890<br>
+                    Email: info@greenthumbgardening.com</p>
+                    
+                    <p><em>Last updated: March 10, 2025</em></p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- PRIVACY PAGE -->
+        <div id="privacy" class="page">
+            <section class="page-header privacy-header">
+                <h1>Privacy Policy</h1>
+            </section>
+            
+            <section class="privacy-section container">
+                <div class="privacy-content">
+                    <h2>1. Introduction</h2>
+                    <p>At Green Thumb Gardening, we are committed to protecting your privacy and safeguarding your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services or visit our website.</p>
+                    <p>By using our services or accessing our website, you agree to the terms of this Privacy Policy. If you do not agree with the practices described in this policy, please do not use our services or website.</p>
+                    
+                    <h2>2. Information We Collect</h2>
+                    <h3>2.1 Personal Information</h3>
+                    <ul>
+                        <li>Name, address, email address, and phone number</li>
+                        <li>Billing and payment information</li>
+                        <li>Property details relevant to our services</li>
+                        <li>Communications between you and Green Thumb Gardening</li>
+                    </ul>
+                    
+                    <h3>2.2 Non-Personal Information</h3>
+                    <ul>
+                        <li>Browser type and version</li>
+                        <li>Operating system</li>
+                        <li>IP address</li>
+                        <li>Pages visited on our website and time spent</li>
+                        <li>Referring website or source</li>
+                    </ul>
+                    
+                    <h2>3. How We Collect Information</h2>
+                    <p>We collect information through several methods:</p>
+                    <ul>
+                        <li>Direct interactions when you provide information to us</li>
+                        <li>Automated technologies when you visit our website (cookies, web beacons)</li>
+                        <li>Third-party sources (credit check services, public databases)</li>
+                    </ul>
+                    
+                    <h2>4. How We Use Your Information</h2>
+                    <p>We may use your information for the following purposes:</p>
+                    <ul>
+                        <li>Provide, maintain, and improve our services</li>
+                        <li>Process payments and billing</li>
+                        <li>Communicate with you about services, promotions, and events</li>
+                        <li>Respond to your inquiries and provide customer support</li>
+                        <li>Monitor and analyze trends, usage, and activities</li>
+                        <li>Prevent fraudulent transactions and enhance security</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+                    
+                    <h2>5. Disclosure of Your Information</h2>
+                    <p>We may share your information with:</p>
+                    <ul>
+                        <li>Service providers who perform services on our behalf</li>
+                        <li>Professional advisers including lawyers, bankers, auditors, and insurers</li>
+                        <li>Government agencies when required by law</li>
+                        <li>Business partners with your consent</li>
+                    </ul>
+                    <p>We do not sell your personal information to third parties.</p>
+                    
+                    <h2>6. Cookies and Similar Technologies</h2>
+                    <p>Our website uses cookies and similar technologies to enhance your browsing experience. You can set your browser to refuse all or some browser cookies, but this may prevent our website from functioning properly.</p>
+                    
+                    <h2>7. Data Security</h2>
+                    <p>We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, and destruction. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+                    
+                    <h2>8. Data Retention</h2>
+                    <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+                    
+                    <h2>9. Children's Privacy</h2>
+                    <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you become aware that a child has provided us with personal information, please contact us.</p>
+                    
+                    <h2>10. Your Rights</h2>
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    <ul>
+                        <li>Access to your personal information</li>
+                        <li>Correction of inaccurate or incomplete information</li>
+                        <li>Deletion of your personal information</li>
+                        <li>Restriction of processing of your personal information</li>
+                        <li>Data portability</li>
+                        <li>Objection to processing</li>
+                        <li>Withdrawal of consent</li>
+                    </ul>
+                    <p>To exercise any of these rights, please contact us using the information provided at the end of this policy.</p>
+                    
+                    <h2>11. California Privacy Rights</h2>
+                    <p>California residents may have additional rights under the California Consumer Privacy Act (CCPA) regarding their personal information. These include the right to know what personal information is collected, disclosed, or sold; the right to request deletion of personal information; the right to opt-out of the sale of personal information; and the right to non-discrimination for exercising these rights.</p>
+                    
+                    <h2>12. Changes to This Privacy Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date at the bottom of this page. We encourage you to review this Privacy Policy frequently to stay informed about how we are protecting your information.</p>
+                    
+                    <h2>13. Contact Us</h2>
+                    <p>If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us:</p>
+                    <p>Green Thumb Gardening<br>
+                    1842 Maple Avenue<br>
+                    Portland, OR 97205<br>
+                    Phone: (503) 555-7890<br>
+                    Email: privacy@greenthumbgardening.com</p>
+                    
+                    <p><em>Last updated: March 10, 2025</em></p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Green Thumb Gardening</h4>
+                    <p>Professional gardening services for residential and commercial properties.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p>1842 Maple Avenue<br>Portland, OR 97205</p>
+                    <p>Phone: (503) 555-7890</p>
+                    <p>Email: info@greenthumbgardening.com</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a onclick="showPage('home')">Home</a></li>
+                        <li><a onclick="showPage('about')">About Us</a></li>
+                        <li><a onclick="showPage('terms')">Terms of Service</a></li>
+                        <li><a onclick="showPage('privacy')">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Business Hours</h4>
+                    <p>Monday - Friday: 8am - 6pm</p>
+                    <p>Saturday: 9am - 4pm</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Green Thumb Gardening. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Update active state in navigation
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.getElementById(pageId + '-link');
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top when changing pages
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to scroll to the contact section
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
